@@ -16,7 +16,7 @@
         "uglify-es": "^3.3.9"
     },
     "scripts": {
-        "connect-script": "NODE_ENV='production' babel src/HumanConnect.js | uglifyjs -c -m -o build/HumanConnect.js"
+        "build": "NODE_ENV='production' babel src/HumanConnect.js | uglifyjs -c -m -o build/HumanConnect.cdn.js"
     },
     "babel": {
         "presets": "./.babelrc.js"
