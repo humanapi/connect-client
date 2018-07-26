@@ -1,0 +1,10 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "[html]": {
+        "editor.formatOnSave": false
+    },
+    "prettier.eslintIntegration": true,
+    "prettier.tabWidth": 4,
+    "prettier.jsxBracketSameLine": true,
+    "editor.formatOnSave": true
+}
