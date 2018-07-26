@@ -1,8 +1,8 @@
 {
-    "name": "human-connect-client",
-    "version": "0.1.0",
+    "name": "humanapi-connect-client",
+    "version": "0.2.0",
     "devDependencies": {
-        "babel-core": "6.26.0",
+        "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.5",
         "babel-jest": "20.0.3",
         "babel-plugin-react-intl": "^2.4.0",
@@ -20,5 +20,8 @@
     },
     "babel": {
         "presets": "./.babelrc.js"
+    },
+    "dependencies": {
+        "babel-loader": "^7.1.5"
     }
 }
