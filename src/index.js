@@ -4,10 +4,9 @@ export function open(options = {}) {
     }
 
     if (!options.token) {
-        throw new Error("token option is required for spawning connect");
+        throw new Error("The token attribute is required");
     }
     options.__baseURL = options.__baseURL || "https://hapi-connect.humanapi.co";
-    options.onFinish = options.finish;
     options.onClose = options.close;
     options.onError = options.error;
 
