@@ -1,6 +1,6 @@
 {
     "name": "humanapi-connect-client",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "devDependencies": {
         "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.5",

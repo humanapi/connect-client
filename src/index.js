@@ -6,22 +6,19 @@ export function open(options = {}) {
     if (!options.token) {
         throw new Error("The token attribute is required");
     }
+    if (typeof options !== "object" || Array.isArray(options)) {
+        throw new Error("Argument must be an object");
+    }
     options.__baseURL = options.__baseURL || "https://hapi-connect.humanapi.co";
-    options.onClose = options.close;
-    options.onError = options.error;
 
     const onMessageReceived = event => {
         const response = event.data;
         if (response.type === "hapi-connect-close") {
             document.getElementById("human-api").remove();
             document.getElementById("human-api-connect-modal-overlay").remove();
+            delete response.type;
             if (options.onClose) {
                 options.onClose(response);
-            }
-        }
-        if (response.type === "hapi-connect-error") {
-            if (options.onError) {
-                options.onError(response.error);
             }
         }
     };
@@ -50,7 +47,7 @@ export function open(options = {}) {
     }/images/data-source-type-icons/launch-connect-text.svg) no-repeat center center`;
 
     const resizeStyling = () => {
-        // applies to iPad/desktop
+        // Applies to iPad/desktop
         if (window.innerWidth >= minWidth && window.innerHeight >= minHeight) {
             iframe.style.height = "100%";
             iframe.style.maxHeight = `${maxHeight}px`;
@@ -61,7 +58,7 @@ export function open(options = {}) {
             iframe.style.top = "calc(50% - 250px)";
             iframe.style.borderRadius = "8px";
         }
-        // mobile defaults are at 100%
+        // Mobile defaults are at 100%
         else {
             iframe.style.width = "100%";
             iframe.style.maxWidth = "100%";
@@ -76,7 +73,7 @@ export function open(options = {}) {
 
     window.addEventListener("resize", resizeStyling);
 
-    // adding div for transparent overlay behind iframe
+    // Add div for transparent overlay behind iframe
     const modalOverlay = document.createElement("div");
     modalOverlay.id = "human-api-connect-modal-overlay";
     modalOverlay.style.position = "fixed";
