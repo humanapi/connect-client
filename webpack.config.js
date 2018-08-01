@@ -5,7 +5,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "build"),
         filename: "humanapi-connect-client.js",
-        library: "humanapiConnectClient",
+        library: "HumanConnect",
         libraryTarget: "umd"
     },
     module: {
