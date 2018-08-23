@@ -20,6 +20,8 @@ export function open(options = {}) {
             if (options.onClose) {
                 options.onClose(response);
             }
+            window.removeEventListener("resize", resizeStyling);
+            window.removeEventListener("message", onMessageReceived, false);
         }
     };
     window.addEventListener("message", onMessageReceived, false);
