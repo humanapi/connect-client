@@ -37,6 +37,7 @@ export function open(options = {}) {
         }
     };
     window.addEventListener("message", onMessageReceived, false);
+    const modalOverlayOpacity = options && options.overlayOpacity ? options.overlayOpacity : "0.6";
     const iframe = document.createElement("iframe");
     const minWidth = 700;
     const maxWidth = 700;
@@ -95,7 +96,7 @@ export function open(options = {}) {
     modalOverlay.style.height = "100%";
     modalOverlay.style.top = "0";
     modalOverlay.style.backgroundColor = "#333";
-    modalOverlay.style.opacity = "0.6";
+    modalOverlay.style.opacity = modalOverlayOpacity;
 
     const body = document.getElementsByTagName("body")[0] || document.documentElement;
     body.appendChild(iframe);
