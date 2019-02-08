@@ -50,6 +50,10 @@ export function open(options = {}) {
         iframe.src = `${iframe.src}&mode=${options.mode}`;
     }
 
+    if (options.mode === "select") {
+        iframe.src = `${iframe.src}&clientId=${options.clientId}`;
+    }
+
     iframe.id = "human-api";
     iframe.style.position = "fixed";
     iframe.style.zIndex = "9999";
