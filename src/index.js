@@ -51,7 +51,10 @@ export function open(options = {}) {
     }
 
     if (options.mode === "select") {
-        iframe.src = `${iframe.src}&clientId=${options.clientId}`;
+        const preseededSources = options.preseededSources || [];
+        iframe.src = `${iframe.src}&clientId=${options.clientId}&preseededSources=${btoa(
+            JSON.stringify(preseededSources)
+        )}`;
     }
 
     iframe.id = "human-api";
