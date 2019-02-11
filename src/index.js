@@ -2,14 +2,14 @@ export function open(options = {}) {
     // IE11 polyfill to remove DOM element
     Element.prototype.remove = function() {
         this.parentElement.removeChild(this);
-    }
+    };
     NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-        for(var i = this.length - 1; i >= 0; i--) {
-            if(this[i] && this[i].parentElement) {
+        for (let i = this.length - 1; i >= 0; i--) {
+            if (this[i] && this[i].parentElement) {
                 this[i].parentElement.removeChild(this[i]);
             }
         }
-    }
+    };
 
     if (document.getElementById("human-api")) {
         return null;
@@ -48,6 +48,13 @@ export function open(options = {}) {
 
     if (options.mode) {
         iframe.src = `${iframe.src}&mode=${options.mode}`;
+    }
+
+    if (options.mode === "select") {
+        const preseededSources = options.preseededSources || [];
+        iframe.src = `${iframe.src}&clientId=${options.clientId}&preseededSources=${btoa(
+            JSON.stringify(preseededSources)
+        )}`;
     }
 
     iframe.id = "human-api";
