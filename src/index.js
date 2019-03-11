@@ -102,6 +102,7 @@ export function open(options = {}) {
     modalOverlay.style.width = "100%";
     modalOverlay.style.height = "100%";
     modalOverlay.style.top = "0";
+    modalOverlay.style.zIndex = 9;
     modalOverlay.style.backgroundColor = "#333";
     modalOverlay.style.opacity = modalOverlayOpacity;
 
