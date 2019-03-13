@@ -102,6 +102,8 @@ export function open(options = {}) {
     modalOverlay.style.width = "100%";
     modalOverlay.style.height = "100%";
     modalOverlay.style.top = "0";
+    // adding z-index to modalOverlay so that it will render just under the connect.
+    modalOverlay.style.zIndex = 9990;
     modalOverlay.style.backgroundColor = "#333";
     modalOverlay.style.opacity = modalOverlayOpacity;
 
