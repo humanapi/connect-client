@@ -46,13 +46,17 @@ export function open(options = {}) {
 
     iframe.src = `${options.__baseURL}/?token=${options.token}`;
 
+    if (options.sessionId) {
+        iframe.src = `${iframe.src}&sessionId=${options.sessionId}`;
+    }
+
     if (options.mode) {
         iframe.src = `${iframe.src}&mode=${options.mode}`;
     }
 
     if (options.mode === "select") {
         const preseededSources = options.preseededSources || [];
-        iframe.src = `${iframe.src}&clientId=${options.clientId}&sessionId=${options.sessionId}&preseededSources=${btoa(
+        iframe.src = `${iframe.src}&clientId=${options.clientId}&preseededSources=${btoa(
             JSON.stringify(preseededSources)
         )}`;
     }
