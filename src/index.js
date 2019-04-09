@@ -52,7 +52,7 @@ export function open(options = {}) {
 
     if (options.mode === "select") {
         const preseededSources = options.preseededSources || [];
-        iframe.src = `${iframe.src}&clientId=${options.clientId}&preseededSources=${btoa(
+        iframe.src = `${iframe.src}&clientId=${options.clientId}&sessionId=${options.sessionId}&preseededSources=${btoa(
             JSON.stringify(preseededSources)
         )}`;
     }
