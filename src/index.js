@@ -46,8 +46,9 @@ export function open(options = {}) {
 
     iframe.src = `${options.__baseURL}/?token=${options.token}`;
 
-    if (options.portalInviteSessionId) {
-        iframe.src = `${iframe.src}&portalInviteSessionId=${options.portalInviteSessionId}`;
+    // pisId - Portal Invite Session Id
+    if (options.pisId) {
+        iframe.src = `${iframe.src}&pisId=${options.pisId}`;
     }
 
     if (options.mode) {
