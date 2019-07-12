@@ -1,0 +1,8 @@
+{
+    "state": "active",
+    "type": "library",
+    "npm_package": "humanapi-connect-client",
+    "public": false,
+    "owner": "alan_rodriguez@humanapi.co",
+    "backup_owners": []
+}
