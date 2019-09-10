@@ -28,9 +28,9 @@ ConnectClient.open(options);
 
 This is the session token that is used to validate your `hapi-connect` session.
 
-#### `options.close(payload)` - _optional_
+### Lifecycle hooks
 
-This is the function that will be executed when `hapi-connect` is closed. The payload passed to this function will have the following schema:
+`humanapi-connect-client` can be configured to respond to lifecycle hooks. Any function listening for lifecycle events defined by Connect will receive a payload with the following schema:
 
 ```javascript
 {
@@ -53,28 +53,29 @@ This is the function that will be executed when `hapi-connect` is closed. The pa
             id: "5b1daf3f079c652eaf41fd23"
         }
     ],
-
-    // Code that will be used to obtain the user's data
-    authCode: {
-        code: "e76bqoer67qr6vetuhqwtrwfrfds6",
-        expiresAt: 1532723922694,
-        expiresIn: 3600
-    }
 };
 ```
 
-#### `options.error(errorMessage)` - _optional_
+#### `options.onConnectSource(payload)` - _optional_
 
-This is the function that will be executed when `hapi-connect` is closed due to an error. An error message will be passed in as the only parameter.
+This lifecycle event will fire when users connect a source.
 
-## Full Usage
+#### `options.onDisconnectSource(payload)` - _optional_
+
+This lifecycle event will fire when users disconnect a source.
+
+#### `options.onClose(payload)` - _optional_
+
+This is the function that will be executed when `hapi-connect` is closed.
+
+## Example Usage
 
 ```javascript
-import * as ConnectClient from "humanapi-connect-client";
+import * as HumanConnect from "humanapi-connect-client";
 
 const token = "this-is-your-session-token";
 
-const close = ({ sessionResults, connections, authCode }) => {
+const onClose = ({ sessionResults, connections }) => {
     console.log(`You have a total of ${connections.length} connections`);
     const connectionsStr = connections.reduce((acc, connection, i) => {
         acc += connection.name;
@@ -91,11 +92,7 @@ const close = ({ sessionResults, connections, authCode }) => {
     );
 };
 
-const error = errorMessage => {
-    console.error(errorMessage);
-};
+const options = { token, onClose };
 
-const options = { token, close, error };
-
-ConnectClient.open(options);
+HumanConnect.open(options);
 ```
