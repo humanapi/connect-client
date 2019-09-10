@@ -28,6 +28,11 @@ ConnectClient.open(options);
 
 This is the session token that is used to validate your `hapi-connect` session.
 
+#### `options.logger` - _optional_
+
+You can optionally pass a `logger` function to `humanapi-connect-client`. This is especially useful for debugging purposes, such as tracing behavior as `humanapi-connect-client` goes through its runtime.
+
+
 ### Lifecycle hooks
 
 `humanapi-connect-client` can be configured to respond to lifecycle hooks. Any function listening for lifecycle events defined by Connect will receive a payload with the following schema:
@@ -75,6 +80,9 @@ import * as HumanConnect from "humanapi-connect-client";
 
 const token = "this-is-your-session-token";
 
+/* Library runtime operations will be logged to your console, prefixed with "humanapi-connect-client" */
+const logger = console.log.bind(null, "humanapi-connect-client: ")
+
 const onClose = ({ sessionResults, connections }) => {
     console.log(`You have a total of ${connections.length} connections`);
     const connectionsStr = connections.reduce((acc, connection, i) => {
@@ -92,7 +100,7 @@ const onClose = ({ sessionResults, connections }) => {
     );
 };
 
-const options = { token, onClose };
+const options = { token, logger, onClose };
 
 HumanConnect.open(options);
 ```
