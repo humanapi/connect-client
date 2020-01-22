@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+build/*
+!build/humanapi-connect-client
+start.html
+test.html
+.DS_Store
