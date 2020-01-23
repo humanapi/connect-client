@@ -42,6 +42,12 @@ If no mode is set the default mode will be `auth`
 <button data-hapi-token="sessiontoken" data-hapi-mode="select">Open Connect in select mode</button>
 ```
 
+### Connect URL
+
+To set the URL of the Connect server to use (e.g. for staging), set the `data-hapi-base-url` attribute:
+
+`<button data-hapi-base-url="https://hapi-connect.staging.humanapi.co" data-hapi-mode="select" data-hapi-token="sessiontoken">Open Connect</button>`
+
 ### Lifecycle hooks
 
 `humanapi-connect-client` can be configured to respond to the following lifecycle hooks:
@@ -86,6 +92,12 @@ HumanConnect.on("disconnect", (response) => {console.log("disconnect", response)
 
 ## Version 1 setup instructions
 
+Version 1 has been deprecated, but the current release version (2.0.0) will be backwards compatible until support is removed.
+
+### Usage 
+
+To use version 1 of the library you have to build an `options` and pass that as an argument for the `open()` method:
+
 ```javascript
 import * as ConnectClient from "humanapi-connect-client";
 
@@ -129,8 +141,8 @@ You can optionally pass a `logger` function to `humanapi-connect-client`. This i
             name: "Starfleet Pharmacy",
             id: "5b1daf3f079c652eaf41fd23"
         }
-    ],
-};
+    ]
+}
 ```
 
 #### `options.onConnectSource(payload)` - _optional_
