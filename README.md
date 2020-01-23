@@ -13,13 +13,17 @@ This module can be used by loading the script from our CDN or by installing the 
 ### CDN
 To use the library via our CDN you can include the following script source:
 
-`<script src="https://cdn.humanapi.co/humanapi-connect-client@latest.js">`
+```html
+<script src="https://cdn.humanapi.co/humanapi-connect-client@latest.js">
+```
 
 
 ### npm module
 To install the npm module and use it with e.g. React:
 
-`npm i humanapi-connect-client`
+```shell script
+npm i humanapi-connect-client
+```
 
 This project currently has no dependencies.
 
@@ -27,7 +31,7 @@ This project currently has no dependencies.
 
 To use this library regardless of the method used, you first need to acquire a session token and set it as the data-attribute `data-hapi-token` of an element that supports the `onclick` event (e.g. a button): 
 
-```javascript
+```html
 <button data-hapi-token="sessiontoken">Open Connect</button>
 ```
 
@@ -38,7 +42,7 @@ Additionally you can also set the Connect mode to use via the `data-hapi-mode` a
 
 If no mode is set the default mode will be `auth`
 
-```javascript
+```html
 <button data-hapi-token="sessiontoken" data-hapi-mode="select">Open Connect in select mode</button>
 ```
 
@@ -46,7 +50,9 @@ If no mode is set the default mode will be `auth`
 
 To set the URL of the Connect server to use (e.g. for staging), set the `data-hapi-base-url` attribute:
 
-`<button data-hapi-base-url="https://hapi-connect.staging.humanapi.co" data-hapi-mode="select" data-hapi-token="sessiontoken">Open Connect</button>`
+```html
+<button data-hapi-base-url="https://hapi-connect.staging.humanapi.co" data-hapi-mode="select" data-hapi-token="sessiontoken">Open Connect</button>
+```
 
 ### Lifecycle hooks
 
