@@ -13,7 +13,7 @@ This module can be used by loading the script from our CDN or by installing the 
 ### CDN
 To use the library via our CDN you can include the following script source:
 
-`<script src="https://cdn.humanapi.co/humanapi-connect-client@2.0.0.js">`
+`<script src="https://cdn.humanapi.co/humanapi-connect-client@latest.js">`
 
 
 ### npm module
