@@ -1,4 +1,4 @@
-    # humanapi-connect-client
+# humanapi-connect-client
 
 ## Description
 
@@ -23,21 +23,68 @@ To install the npm module and use it with e.g. React:
 
 This project currently has no dependencies.
 
-## Simple Usage
+## Usage
 
-To use this library you first need to acquire a session token, and then add that token to the data-attribute `data-hapi-token` of an element that supports the `onclick` event (e.g. a button): 
+To use this library regardless of the method used, you first need to acquire a session token and set it as the data-attribute `data-hapi-token` of an element that supports the `onclick` event (e.g. a button): 
 
 ```javascript
 <button data-hapi-token="sessiontoken">Open Connect</button>
 ```
 
-Additionally you can also set the connection mode via the `data-hapi-mode` attribute, by setting the value to either `select` or `auth`. If no mode is set the default mode will be `auth`
+The library will then automatically configure all elements with the `data-hapi-token` attribute to allow them to open the Connect window.
+
+### Connect mode
+Additionally you can also set the Connect mode to use via the `data-hapi-mode` attribute, by setting the value to either `select` or `auth`. 
+
+If no mode is set the default mode will be `auth`
 
 ```javascript
 <button data-hapi-token="sessiontoken" data-hapi-mode="select">Open Connect in select mode</button>
 ```
 
-The library will automatically add an `onclick` event listener to all elements with the `data-hapi-token` attribute.
+### Lifecycle hooks
+
+`humanapi-connect-client` can be configured to respond to the following lifecycle hooks:
+ 
+ - `connect`: This event will be fired after a source has been successfully connected
+ - `disconnect`: This event will be fired after a source has been disconnected
+ - `close`: This event will be fired after the Connect window is closed, regardless of whether sources were connected or not
+ 
+ To add a lifecycle hook to a particular event you have to use the `on(eventName, eventListener)` method, e.g.:
+ 
+ ```javascript
+HumanConnect.on("close", (response) => {console.log("close", response)});
+HumanConnect.on("connect", (response) => {console.log("connect", response)});
+HumanConnect.on("disconnect", (response) => {console.log("disconnect", response)});
+```
+ 
+ Any function listening for lifecycle events defined by Connect will receive a payload with the following schema:
+ 
+ ```javascript
+ {
+     sessionResults: {
+         // List of sources the user connected during this session
+         connected: [
+             {
+                 name: "Starfleet Pharmacy",
+                 id: "5b1daf3f079c652eaf41fd23"
+             }
+         ],
+         // List of sources the user disconnected during this session
+         disconnected: []
+     },
+ 
+     // List of sources the user currently has connected with your app
+     connections: [
+         {
+             name: "Starfleet Pharmacy",
+             id: "5b1daf3f079c652eaf41fd23"
+         }
+     ]
+ }
+ ```
+
+## Version 1 setup instructions
 
 ```javascript
 import * as ConnectClient from "humanapi-connect-client";
@@ -58,7 +105,7 @@ This is the session token that is used to validate your `hapi-connect` session.
 You can optionally pass a `logger` function to `humanapi-connect-client`. This is especially useful for debugging purposes, such as tracing behavior as `humanapi-connect-client` goes through its runtime.
 
 
-### Lifecycle hooks
+## Lifecycle hooks
 
 `humanapi-connect-client` can be configured to respond to lifecycle hooks. Any function listening for lifecycle events defined by Connect will receive a payload with the following schema:
 
