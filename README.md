@@ -4,7 +4,7 @@
 
 This purpose of this library is to spawn https://hapi-connect.humanapi.co within your application.
 
-We recommend you use version 2.0.0+ since version 1.3.1 has been deprecated and support for it will be removed in 6 months, although it will continue to work in the meantime.
+We recommend you use version 2.0.0+ since version 1.3.1 has been deprecated and support for it will be removed in July 2020, although it will continue to work in the meantime.
 
 ## Installation
 
@@ -44,14 +44,6 @@ If no mode is set the default mode will be `auth`
 
 ```html
 <button data-hapi-token="sessiontoken" data-hapi-mode="select">Open Connect in select mode</button>
-```
-
-### Connect URL
-
-To set the URL of the Connect server to use (e.g. for staging), set the `data-hapi-base-url` attribute:
-
-```html
-<button data-hapi-base-url="https://hapi-connect.staging.humanapi.co" data-hapi-mode="select" data-hapi-token="sessiontoken">Open Connect</button>
 ```
 
 ### Lifecycle hooks
@@ -98,7 +90,7 @@ HumanConnect.on("disconnect", (response) => {console.log("disconnect", response)
 
 ## Version 1 setup instructions
 
-Version 1 has been deprecated, but the current release version (2.0.0) will be backwards compatible until support is removed.
+Version 1 has been deprecated, but the current release version (2.0.X) will be backwards compatible and support will eventually be removed in version 2.1.0
 
 ### Usage 
 
