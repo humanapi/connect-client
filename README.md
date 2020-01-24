@@ -22,10 +22,8 @@ To use the library via our CDN you can include the following script source:
 To install the npm module and use it with e.g. React:
 
 ```shell script
-npm i humanapi-connect-client
+npm install --save humanapi-connect-client
 ```
-
-This project currently has no dependencies.
 
 ## Usage
 
