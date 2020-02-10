@@ -10,3 +10,5 @@ METADATA
 .eslintignore
 .eslintrc
 CONTRIBUTING.md
+.babelrc.js
+webpack.config.js
