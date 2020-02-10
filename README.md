@@ -1,10 +1,28 @@
 # humanapi-connect-client
 
+## New version 2.x.x available
+
+We have recently released a new Connect integration client version that replaces the old 1.x.x version that has been deprecated.
+
+It is recommended that you use this new client version which is backwards compatible to make the transition easier.
+
+Please refer to https://reference.humanapi.co/docs/new-integration-guide-jan-2020 for full instructions on how to use the Connect client
+
+## Upgrade from 1.x.x
+
+### CDN
+- If you are using the script via the CDN and the source location is `src=https://cdn.humanapi.co/humanapi-connect-client@latest.js` you will be upgraded automatically. The new version is backwards compatible so there is no other change needed for the time being.
+
+- If you are using a specific version of the library, e.g. `src=https://cdn.humanapi.co/humanapi-connect-client@1.2.4.js` you can just use `humanapi-connect-client@latest.js` or specify a 2.x.x version, e.g. `humanapi-connect-client@2.0.0.js`
+
+### npm
+- Install the latest package with `npm install humanapi-connect-client`
+
 ## Description
 
 This purpose of this library is to spawn https://hapi-connect.humanapi.co within your application.
 
-We recommend you use version 2.0.0+ since version 1.3.1 has been deprecated and support for it will be removed in July 2020, although it will continue to work in the meantime.
+We recommend you use version 2.0.0+ since version 1.3.1 has been deprecated and support for it will be removed in the future, although it will continue to work in the meantime.
 
 ## Installation
 
@@ -27,22 +45,15 @@ npm install --save humanapi-connect-client
 
 ## Usage
 
-To use this library regardless of the method used, you first need to acquire a session token and set it as the data-attribute `data-hapi-token` of an element that supports the `onclick` event (e.g. a button): 
+To use this library regardless of the method used, you first need to acquire a session token and set it as the data-attribute `data-hapi-token` of an element that supports the `onclick` event (e.g. a button). Then, you need to add the class `hapi__token-container` to the parent of the element that has the token value, e.g.: 
 
 ```html
-<button data-hapi-token="sessiontoken">Open Connect</button>
+<div class="hapi__token-container">
+    <button data-hapi-token="<your session token>">Open Connect</button>
+</div>
 ```
 
-The library will then automatically configure all elements with the `data-hapi-token` attribute to allow them to open the Connect window.
-
-### Connect mode
-Additionally you can also set the Connect mode to use via the `data-hapi-mode` attribute, by setting the value to either `select` or `auth`. 
-
-If no mode is set the default mode will be `auth`
-
-```html
-<button data-hapi-token="sessiontoken" data-hapi-mode="select">Open Connect in select mode</button>
-```
+The library will then automatically configure all elements with the `data-hapi-token` attribute under that parent, to allow them to open the Connect window.
 
 ### Lifecycle hooks
 
@@ -61,34 +72,59 @@ HumanConnect.on("disconnect", (response) => {console.log("disconnect", response)
 ```
  
  Any function listening for lifecycle events defined by Connect will receive a payload with the following schema:
- 
- ```javascript
- {
-     sessionResults: {
-         // List of sources the user connected during this session
-         connected: [
-             {
-                 name: "Starfleet Pharmacy",
-                 id: "5b1daf3f079c652eaf41fd23"
-             }
-         ],
-         // List of sources the user disconnected during this session
-         disconnected: []
-     },
- 
-     // List of sources the user currently has connected with your app
-     connections: [
-         {
-             name: "Starfleet Pharmacy",
-             id: "5b1daf3f079c652eaf41fd23"
-         }
-     ]
- }
- ```
+  
+  ```javascript
+   {
+       sessionResults: {
+           // List of sources the user connected during this session
+           connectedSources: [
+               {
+                   name: "Starfleet Pharmacy",
+                   id: "5b1daf3f079c652eaf41fd23"
+               }
+           ],
+           // List of sources the user disconnected during this session
+           disconnectedSources: [],
+           // List of sources the user requested during this session
+           requestedSources: [
+               {
+                   address: "742 Evergreen Terrace, OH",
+                   healthSystem: "N/A",
+                   location: {
+                       latitude: 41.3289,
+                       longitude: -105.6928
+                   },
+                   physician: "Dr. John Smith",
+                   website: "drjohnsmith.example.com"
+               }
+           ]
+       },
+       // List of sources the user currently has connected with your app
+       currentConnections: [
+           {
+               name: "Starfleet Pharmacy",
+               id: "5b1daf3f079c652eaf41fd23"
+           }
+       ],
+       // List of sources the user has requested
+       requestedProviders: [
+               {
+                   address: "742 Evergreen Terrace, OH",
+                   healthSystem: "N/A",
+                   location: {
+                       latitude: 41.3289,
+                       longitude: -105.6928
+                   },
+                   physician: "Dr. John Smith",
+                   website: "drjohnsmith.example.com"
+               }
+       ]
+   }
+   ```
 
 ## Version 1 setup instructions
 
-Version 1 has been deprecated, but the current release version (2.0.X) will be backwards compatible and support will eventually be removed in version 2.1.0
+Version 1 has been deprecated, but the current release version (2.0.X) will be backwards compatible and support will eventually be removed in a future version.
 
 ### Usage 
 
