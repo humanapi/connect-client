@@ -5,3 +5,5 @@ build/*
 start.html
 test.html
 .DS_Store
+CODEOWNERS
+METADATA
