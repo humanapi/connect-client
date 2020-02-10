@@ -7,3 +7,5 @@ test.html
 .DS_Store
 CODEOWNERS
 METADATA
+.eslintignore
+.eslintrc
