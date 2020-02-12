@@ -1,0 +1,14 @@
+.idea/
+.vscode/
+build/*
+!build/humanapi-connect-client
+start.html
+test.html
+.DS_Store
+CODEOWNERS
+METADATA
+.eslintignore
+.eslintrc
+CONTRIBUTING.md
+.babelrc.js
+webpack.config.js
