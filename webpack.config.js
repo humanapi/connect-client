@@ -7,7 +7,7 @@ module.exports = {
         filename: "humanapi-connect-client.js",
         library: "HumanConnect",
         libraryTarget: "umd",
-        globalObject: 'this',
+        globalObject: "this"
     },
     module: {
         rules: [
