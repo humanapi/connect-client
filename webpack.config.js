@@ -6,7 +6,8 @@ module.exports = {
         path: path.resolve(__dirname, "build"),
         filename: "humanapi-connect-client.js",
         library: "HumanConnect",
-        libraryTarget: "umd"
+        libraryTarget: "umd",
+        globalObject: "this"
     },
     module: {
         rules: [
