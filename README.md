@@ -6,7 +6,7 @@ We have recently released a new Connect integration client version that replaces
 
 It is recommended that you use this new client version which is backwards compatible to make the transition easier.
 
-Please refer to https://reference.humanapi.co/docs/new-integration-guide-jan-2020 for full instructions on how to use the Connect client
+Please refer to http://myhealthdata.co/connect-guide for full instructions on how to use the Connect client
 
 ## Upgrade from 1.x.x
 
