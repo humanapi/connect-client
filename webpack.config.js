@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-    entry: [ "@babel/polyfill", "./lib/index.js" ],
+    entry: "./lib/index.js",
     output: {
         path: path.resolve(__dirname, "build"),
         filename: "humanapi-connect-client.js",
@@ -13,13 +13,10 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: [ "env" ]
-                    }
-                }
+                exclude: /node_modules/,
+                use: [
+                    { loader: "babel-loader" }
+                ]
             }
         ]
     }
