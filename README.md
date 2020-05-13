@@ -1,28 +1,19 @@
-# humanapi-connect-client
+# Human API Connect Client
+[![NPM](https://nodei.co/npm/humanapi-connect-client.png)](https://nodei.co/npm/humanapi-connect-client/)
 
-## New version 2.x.x available
+## Looking for `1.x` documentation?
 
-We have recently released a new Connect integration client version that replaces the old 1.x.x version that has been deprecated.
+The documentation below is for `humanapi-connect-client@2`. We have recently released a new Connect integration client version that replaces the old 1.x.x version that has been deprecated.
 
 It is recommended that you use this new client version which is backwards compatible to make the transition easier.
 
-Please refer to http://myhealthdata.co/connect-guide for full instructions on how to use the Connect client
-
-## Upgrade from 1.x.x
-
-### CDN
-- If you are using the script via the CDN and the source location is `src=https://cdn.humanapi.co/humanapi-connect-client@latest.js` you will be upgraded automatically. The new version is backwards compatible so there is no other change needed for the time being.
-
-- If you are using a specific version of the library, e.g. `src=https://cdn.humanapi.co/humanapi-connect-client@1.2.4.js` you can just use `humanapi-connect-client@latest.js` or specify a 2.x.x version, e.g. `humanapi-connect-client@2.0.0.js`
-
-### npm
-- Install the latest package with `npm install humanapi-connect-client`
+[Click here](https://github.com/humanapi/connect-client/tree/4e5ab9ff1c41946f5320fbe3e457ce0e4b117caf) for `humanapi-connect-client@1.x` documentation.
 
 ## Description
 
-This purpose of this library is to spawn https://hapi-connect.humanapi.co within your application.
+Connect is the authentication widget for your application to allow users to share their health data. After a user has successfully granted you access to their health data using Connect, you'll be able to query their disparate data directly from Human API. 
 
-We recommend you use version 2.0.0+ since version 1.3.1 has been deprecated and support for it will be removed in the future, although it will continue to work in the meantime.
+Please refer to the [connect guide](http://myhealthdata.co/connect-guide) for full instructions on how to use the Connect client.
 
 ## Installation
 
@@ -35,11 +26,10 @@ To use the library via our CDN you can include the following script source:
 <script src="https://cdn.humanapi.co/humanapi-connect-client@latest.js">
 ```
 
-
-### npm module
+### NPM module
 To install the npm module and use it with e.g. React:
 
-```shell script
+```sh
 npm install --save humanapi-connect-client
 ```
 
@@ -52,6 +42,8 @@ To use this library regardless of the method used, you first need to acquire a s
     <button data-hapi-token="<your session token>">Open Connect</button>
 </div>
 ```
+
+**Note:** Make sure that the element containing the class `hapi__token-container` is rendered on page load.
 
 The library will then automatically configure all elements with the `data-hapi-token` attribute under that parent, to allow them to open the Connect window.
 
@@ -122,101 +114,12 @@ HumanConnect.on("disconnect", (response) => {console.log("disconnect", response)
    }
    ```
 
-## Version 1 setup instructions
+## Upgrade from 1.x.x
 
-Version 1 has been deprecated, but the current release version (2.0.X) will be backwards compatible and support will eventually be removed in a future version.
+### CDN
+- If you are using the script via the CDN and the source location is `src=https://cdn.humanapi.co/humanapi-connect-client@latest.js` you will be upgraded automatically. The new version is backwards compatible so there is no other change needed for the time being.
 
-### Usage 
+- If you are using a specific version of the library, e.g. `src=https://cdn.humanapi.co/humanapi-connect-client@1.2.4.js` you can just use `humanapi-connect-client@latest.js` or specify a 2.x.x version, e.g. `humanapi-connect-client@2.0.4.js`
 
-To use version 1 of the library you have to build an `options` and pass that as an argument for the `open()` method:
-
-```javascript
-import * as ConnectClient from "humanapi-connect-client";
-
-const options = { token: "this-is-your-session-token" };
-
-ConnectClient.open(options);
-```
-
-## Full list of options
-
-#### `options.token` - _required_
-
-This is the session token that is used to validate your `hapi-connect` session.
-
-#### `options.logger` - _optional_
-
-You can optionally pass a `logger` function to `humanapi-connect-client`. This is especially useful for debugging purposes, such as tracing behavior as `humanapi-connect-client` goes through its runtime.
-
-
-## Lifecycle hooks
-
-`humanapi-connect-client` can be configured to respond to lifecycle hooks. Any function listening for lifecycle events defined by Connect will receive a payload with the following schema:
-
-```javascript
-{
-    sessionResults: {
-        // List of sources the user connected during this session
-        connected: [
-            {
-                name: "Starfleet Pharmacy",
-                id: "5b1daf3f079c652eaf41fd23"
-            }
-        ],
-        // List of sources the user disconnected during this session
-        disconnected: []
-    },
-
-    // List of sources the user currently has connected with your app
-    connections: [
-        {
-            name: "Starfleet Pharmacy",
-            id: "5b1daf3f079c652eaf41fd23"
-        }
-    ]
-}
-```
-
-#### `options.onConnectSource(payload)` - _optional_
-
-This lifecycle event will fire when users connect a source.
-
-#### `options.onDisconnectSource(payload)` - _optional_
-
-This lifecycle event will fire when users disconnect a source.
-
-#### `options.onClose(payload)` - _optional_
-
-This is the function that will be executed when `hapi-connect` is closed.
-
-## Example Usage
-
-```javascript
-import * as HumanConnect from "humanapi-connect-client";
-
-const token = "this-is-your-session-token";
-
-/* Library runtime operations will be logged to your console, prefixed with "humanapi-connect-client" */
-const logger = console.log.bind(null, "humanapi-connect-client: ")
-
-const onClose = ({ sessionResults, connections }) => {
-    console.log(`You have a total of ${connections.length} connections`);
-    const connectionsStr = connections.reduce((acc, connection, i) => {
-        acc += connection.name;
-        acc += i !== connections.length - 1 && ", ";
-        return acc;
-    }, "");
-    console.log(`Your current connections are ${connectionsStr}`);
-    console.log(
-        `During this previous session, you connected ${
-            sessionResults.connected.length
-        } sources and disconnected ${
-            sessionResults.disconnected.length
-        } sources.`
-    );
-};
-
-const options = { token, logger, onClose };
-
-HumanConnect.open(options);
-```
+### npm
+- Install the latest package with `npm install humanapi-connect-client`
