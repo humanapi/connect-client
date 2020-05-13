@@ -1,6 +1,13 @@
 # Human API Connect Client
 [![NPM](https://nodei.co/npm/humanapi-connect-client.png)](https://nodei.co/npm/humanapi-connect-client/)
 
+## Table of contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Lifecycle Hooks](#lifecycle-hooks)
+- [Upgrade from 1.x.x](#upgrade-from-1xx)
+
 ## Looking for `1.x` documentation?
 
 The documentation below is for `humanapi-connect-client@2`. We have recently released a new Connect integration client version that replaces the old 1.x.x version that has been deprecated.
@@ -8,6 +15,8 @@ The documentation below is for `humanapi-connect-client@2`. We have recently rel
 It is recommended that you use this new client version which is backwards compatible to make the transition easier.
 
 [Click here](https://github.com/humanapi/connect-client/tree/4e5ab9ff1c41946f5320fbe3e457ce0e4b117caf) for `humanapi-connect-client@1.x` documentation.
+
+---
 
 ## Description
 
