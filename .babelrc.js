@@ -4,7 +4,9 @@ module.exports = {
             "@babel/preset-env",
             {
                 debug: true,
-                modules: "umd"
+                modules: "umd",
+                useBuiltIns: "usage",
+                corejs: 3
             }
         ]
     ],
