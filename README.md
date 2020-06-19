@@ -63,6 +63,7 @@ The library will then automatically configure all elements with the `data-hapi-t
  - `connect`: This event will be fired after a source has been successfully connected
  - `disconnect`: This event will be fired after a source has been disconnected
  - `close`: This event will be fired after the Connect window is closed, regardless of whether sources were connected or not
+ - `error`: This event fires in case theres an error with the library e.g. a token container element is not found
  
  To add a lifecycle hook to a particular event you have to use the `on(eventName, eventListener)` method, e.g.:
  
@@ -70,6 +71,7 @@ The library will then automatically configure all elements with the `data-hapi-t
 HumanConnect.on("close", (response) => {console.log("close", response)});
 HumanConnect.on("connect", (response) => {console.log("connect", response)});
 HumanConnect.on("disconnect", (response) => {console.log("disconnect", response)});
+HumanConnect.on("error", (response) => {console.error("error", response)});
 ```
  
  Any function listening for lifecycle events defined by Connect will receive a payload with the following schema:
