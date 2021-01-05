@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@babel/runtime-corejs3": "^7.9.6",
-        "core-js": "^3.6.5"
+        "core-js": "^3.6.5",
+        "focus-trap": "^6.2.3"
     }
 }
