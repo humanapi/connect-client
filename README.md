@@ -134,3 +134,48 @@ HumanConnect.on("error", (response) => {console.error("error", response)});
 
 ### npm
 - Install the latest package with `npm install humanapi-connect-client`
+
+## Contributing
+
+**Note:** This project uses Node 14.
+
+### Generate a prerelease version
+
+To generate a new pre-release version, you can run the following command:
+
+```sh
+npm version prerelease --preid=beta
+```
+
+This will bump the version to the next pre-release version, e.g. from `2.0.0` to `2.0.1-beta.0`. After that you can publish the new version with:
+
+```sh
+npm publish --tag beta
+```
+And then push the new tag to the repository:
+
+```sh
+# Example
+git push origin v2.0.1-beta.0
+```
+
+### Generate a new version
+
+To generate a new version, you can run the following command:
+
+```sh
+npm version patch
+```
+
+After that you can publish the new version with:
+
+```sh
+npm publish
+```
+
+And then push the new tag to the repository:
+
+```sh
+# Example
+git push origin v2.0.1
+```
